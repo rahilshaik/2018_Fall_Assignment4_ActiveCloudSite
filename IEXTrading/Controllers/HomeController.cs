@@ -27,7 +27,7 @@ namespace MVCTemplate.Controllers
         }
 
         /****
-         * The Symbols action calls the GetSymbols method that returns a list of Companies.
+         * The Symbols action calls the GetSymbols and GetQuotes method that returns a list of Top 5 Companies.
          * This list of Companies is passed to the Symbols View.
         ****/
         public IActionResult Symbols()
@@ -36,11 +36,55 @@ namespace MVCTemplate.Controllers
             ViewBag.dbSucessComp = 0;
             IEXHandler webHandler = new IEXHandler();
             List<Company> companies = webHandler.GetSymbols();
-
+            companies = companies.GetRange(0, 9);
             //Save comapnies in TempData
             TempData["Companies"] = JsonConvert.SerializeObject(companies);
 
             return View(companies);
+        }
+
+        /****
+         * The Symbols action calls the GetSymbols and GetQuotes method that returns a list of Top 5 Companies.
+         * This list of Companies is passed to the Symbols View.
+        ****/
+        public IActionResult TopStocks()
+        {
+            //Set ViewBag variable first
+            ViewBag.dbSucessComp = 0;
+            IEXHandler webHandler = new IEXHandler();
+            List<Company> companies = webHandler.GetSymbols();
+            //Removing those companies which are not enabled and type is N/A
+            companies = companies.Where(a => a.isEnabled && a.type != "N/A").ToList();
+            List<KeyValuePair<string, Dictionary<string, Quote>>> quotes = webHandler.GetQuotes(companies);
+            var filteredCompanies = companies.Where(a => quotes.Any(x => x.Key.Equals(a.symbol))).ToList();
+            //Save comapnies and Quotes in TempData
+            TempData["Quotes"] = JsonConvert.SerializeObject(quotes);
+            TempData["Companies"] = JsonConvert.SerializeObject(filteredCompanies);
+
+            return View(filteredCompanies);
+        }
+
+        /****
+         * The Quotes action calls the GetQuotes that returns a list of Top 5 Companies.
+         * This list of Companies is passed to the Symbols View.
+        ****/
+        public IActionResult Quotes()
+        {
+            List<KeyValuePair<string, Dictionary<string, Quote>>> quotes = JsonConvert.DeserializeObject<List<KeyValuePair<string, Dictionary<string, Quote>>>>(TempData["Quotes"].ToString());
+            List<Quote> quoteList = new List<Quote>();
+            //Add quotes from the value to the list to update it in View
+            foreach (var quoteObject in quotes)
+            {
+                Quote quote = quoteObject.Value.FirstOrDefault().Value;
+                quoteList.Add(quote);
+            }
+
+            return View(quoteList);
+        }
+
+        public IActionResult About()
+        {
+            return View();
         }
 
         /****
