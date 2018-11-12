@@ -15,6 +15,9 @@ Along with the details,i have added a property as week52PriceRange to calculate 
 and filtered those quotes whose difference between high value and low value is zero.
 <br />
 <br />
+4)I have leart about MVC Application and Sql server.
+<br />
+<br />
 Aayush:
 <br />
 <br />
@@ -25,20 +28,27 @@ Aayush:
 3)I made sure that all the null exceptions are checked and handled in the server side.
 <br />
 <br />
+4)I got a chance to explore Azure services
+<br />
+<br />
 Stock Picking Strategy:
-<br/>
-<br/>
+<br />
+<br />
 Based on the references provided , we opted the Week52 Price Range Strategy to select the top 5 stocks from the quotes
 API of every stock.We chose close price, week52Low, week52High to calculate the Price momentum of each stock symbol.
-<br/>
-In the Companies API result set , we found some companies whose names are empty and whose isEnabled value is Zero.
+<br />
+In the Companies API result set , we found some companies whose names are empty and whose isEnabled value is Zero
+and whose companies types are not N/A.
 We have handled that that scenario and removed companies which are not valid.
-<br/>
-<br/>
+<br />
+<br />
 Price Momentum=(Close - Week52Low)/(Week52High-Week52Low)
-<br/>
-<br/>
+<br />
+<br />
 From the above formula, their were some stocks whose Week52 high and low values are 0 which are resulting in making
 Price momentum value as Infinity.We have removed those stocks as well for clean data.
-<br/>
+<br />
 There were many stocks whose Price Momentum value is more than 82%.Hence, we are displaying only the top 5 stocks among them.
+<br />
+Their were stocks whose total volume is less or not upto the mark.According to the current market trend, we have set
+an average volume of stock over 39 Million for some decent stocks which are genuinely top.

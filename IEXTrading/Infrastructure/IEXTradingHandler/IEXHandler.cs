@@ -78,7 +78,8 @@ namespace IEXTrading.Infrastructure.IEXTradingHandler
                         //Removing the companines whise name is null or empty
                         quotes = quotes.Where(a => (!string.IsNullOrEmpty(a.Value?.FirstOrDefault().Value?.companyName) &&
                         //Removing those quotes whose week52high - week52low is 0 to avoid 0 condition in denominator for top strategies algorithm
-                        (a.Value?.FirstOrDefault().Value?.week52High - a.Value?.FirstOrDefault().Value?.week52Low) > 0)
+                        (a.Value?.FirstOrDefault().Value?.week52High - a.Value?.FirstOrDefault().Value?.week52Low) > 0) &&
+                        (a.Value?.FirstOrDefault().Value?.latestVolume > 39000000)
                         ).ToDictionary(x => x.Key, x => x.Value);
                         skipCount += 100;
                         quoteList = quoteList.Concat(quotes).ToDictionary(a => a.Key, a => a.Value);

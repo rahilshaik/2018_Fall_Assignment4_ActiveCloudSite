@@ -21,16 +21,22 @@
                 Company Name
             </th>
             <th>
-                Sector
+                Stock Exchange
             </th>
             <th>
-                Open
+                Last Trading Price
             </th>
             <th>
-                Close
+                Week 52 high
             </th>
             <th>
-                Latest Price
+                Week 52 Low
+            </th>
+            <th>
+                Closing Price
+            </th>
+            <th>
+                Market Capitalization
             </th>
             <th>
                 Average Volume
@@ -47,16 +53,22 @@
                 @Html.DisplayFor(modelItem => item.companyName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.sector)
+                @Html.DisplayFor(modelItem => item.primaryExchange)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.open)
+                @Html.DisplayFor(modelItem => item.latestPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.week52High)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.week52Low)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.close)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.latestPrice)
+                @Html.DisplayFor(modelItem => item.marketCap)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.avgTotalVolume)
