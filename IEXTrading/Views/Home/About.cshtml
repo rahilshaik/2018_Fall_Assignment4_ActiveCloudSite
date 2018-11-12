@@ -1,4 +1,6 @@
 ﻿<br />
+<b>Self Reflection</b>
+<br />
 <br />
 Rahil:
 <br />
@@ -8,10 +10,8 @@ Along with the details,i have added a property as week52PriceRange to calculate 
 <br />
 2)We have picked the 52-Week Price Range Strategy which calculates the Price momentum ratio to take the top 5 stocks whose score is 82% or higher.
 <br />
-3)It was found that after calculations,we got the scenarios where the company names are empty, the denominato in the week52Price
-Range is 0 , Iexenabled values as false.We have removed those values and tried to get the valid companies from the list
 <br />
-4)We faced some issues due to the API limitations of allowing only 100 symbols.We fetched all the symbol's data'
+3)I had faced some issues in fetching quote results due to the IEX Trading API limitations of allowing only 100 symbols.We fetched all the symbol's data'
 and filtered those quotes whose difference between high value and low value is zero.
 <br />
 <br />
@@ -23,3 +23,22 @@ Aayush:
 2)I have created a web page to display the quote values of the top 5 stocks which is coming from the temp data.
 <br />
 3)I made sure that all the null exceptions are checked and handled in the server side.
+<br />
+<br />
+Stock Picking Strategy:
+<br/>
+<br/>
+Based on the references provided , we opted the Week52 Price Range Strategy to select the top 5 stocks from the quotes
+API of every stock.We chose close price, week52Low, week52High to calculate the Price momentum of each stock symbol.
+<br/>
+In the Companies API result set , we found some companies whose names are empty and whose isEnabled value is Zero.
+We have handled that that scenario and removed companies which are not valid.
+<br/>
+<br/>
+Price Momentum=(Close - Week52Low)/(Week52High-Week52Low)
+<br/>
+<br/>
+From the above formula, their were some stocks whose Week52 high and low values are 0 which are resulting in making
+Price momentum value as Infinity.We have removed those stocks as well for clean data.
+<br/>
+There were many stocks whose Price Momentum value is more than 82%.Hence, we are displaying only the top 5 stocks among them.
