@@ -1,0 +1,25 @@
+﻿<br />
+<br />
+Rahil:
+<br />
+<br />
+1) I have read the details of the IEX Trading API and created Model called Quotes to read the API details.
+Along with the details,i have added a property as week52PriceRange to calculate the week 52 price range strategy.
+<br />
+2)We have picked the 52-Week Price Range Strategy which calculates the Price momentum ratio to take the top 5 stocks whose score is 82% or higher.
+<br />
+3)It was found that after calculations,we got the scenarios where the company names are empty, the denominato in the week52Price
+Range is 0 , Iexenabled values as false.We have removed those values and tried to get the valid companies from the list
+<br />
+4)We faced some issues due to the API limitations of allowing only 100 symbols.We fetched all the symbol's data'
+and filtered those quotes whose difference between high value and low value is zero.
+<br />
+<br />
+Aayush:
+<br />
+<br />
+1)I have handled UI part of designing web pages for top 5 stocks page which displays all the values of stocks.
+<br />
+2)I have created a web page to display the quote values of the top 5 stocks which is coming from the temp data.
+<br />
+3)I made sure that all the null exceptions are checked and handled in the server side.

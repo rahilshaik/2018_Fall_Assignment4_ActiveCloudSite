@@ -1,0 +1,67 @@
+﻿@model IEnumerable<IEXTrading.Models.Quote>
+
+<h2>Quote Details</h2>
+<hr />
+<hr />
+
+@*<form asp-controller="Home" asp-action="Quote" method="get">
+    <select name="symbol">
+        @foreach (var quote in Model)
+        {
+        <option value=@quote.symbol selected>@quote.companyName</option>
+        }
+    </select>
+    <input id="getQuote" type="submit" value="Get Quote" />
+</form>*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Company Name
+            </th>
+            <th>
+                Sector
+            </th>
+            <th>
+                Open
+            </th>
+            <th>
+                Close
+            </th>
+            <th>
+                Latest Price
+            </th>
+            <th>
+                Average Volume
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.companyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sector)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.open)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.close)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.latestPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.avgTotalVolume)
+            </td>
+        </tr>
+        }      
+    </tbody>
+</table>
