@@ -1,7 +1,7 @@
 ﻿@model IEXTrading.Models.ViewModel.CompaniesEquities
 
 @{
-    ViewData["Title"] = "Quote";
+    ViewData["Title"] = "Chart";
 }
 
 <h2>Chart</h2>
@@ -14,7 +14,7 @@
             <option value=@company.symbol selected>@company.name</option>
         }
     </select>
-    <input type="submit" value="Get Chart" />
+    <input type="submit" id="btnAdd" class="submit" style="margin-left:2%" value="Get Chart" />
 </form>
 @if (Model.Current != null)
 {

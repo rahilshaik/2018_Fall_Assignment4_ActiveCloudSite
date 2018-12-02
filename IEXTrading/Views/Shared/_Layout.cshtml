@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TradingApp</title>
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script type="text/javascript" src="~/js/Chart.min.js"></script>
     <script type="text/javascript" src="~/lib/chartjs-plugin-annotation-master/chartjs-plugin-annotation.min.js"></script>
     <script type="text/javascript" src="~/js/site.js"></script>
@@ -13,12 +16,12 @@
     <nav>
         <div class="nav-bar">
             <a asp-area="" asp-controller="Home" asp-action="Index">Home </a><text> | </text>
-            <a asp-area="" asp-controller="Home" asp-action="Symbols">Symbols </a><text> | </text>
-            <a asp-area="" asp-controller="Home" asp-action="TopStocks">Top Stocks </a><text> | </text>
-            <a asp-area="" asp-controller="Home" asp-action="Quotes">Top Stock Quotes </a><text> | </text>
+            @*<a asp-area="" asp-controller="Home" asp-action="Symbols">Top Stocks </a><text> | </text>*@
+            <a asp-area="" asp-controller="Home" asp-action="SavedStocks">Preferred Stocks </a><text> | </text>
+            <a asp-area="" asp-controller="Home" asp-action="Quotes">Top Stocks </a><text> | </text>
             <a asp-area="" asp-controller="Home" asp-action="Chart">Chart </a><text> | </text>
-            <a asp-area="" asp-controller="Home" asp-action="Refresh">Refresh </a><text> | </text>
-            <a asp-area="" asp-controller="Home" asp-action="About">About </a><text> | </text>
+            @*<a asp-area="" asp-controller="Home" asp-action="Refresh">Refresh </a><text> | </text>*@
+            <a asp-area="" asp-controller="Home" asp-action="AboutUs">About Us </a><text> | </text>
         </div>
     </nav>
     <div class="container body-content">
@@ -29,5 +32,6 @@
         </footer>
     </div>
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

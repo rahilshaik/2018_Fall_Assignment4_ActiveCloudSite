@@ -12,6 +12,8 @@ namespace IEXTrading.Models
         public bool isEnabled { get; set; }
         public string type { get; set; }
         public string iexId { get; set; }
-        public List<Equity> Equities {get; set; }
+        public bool IsPreferedByUser { get; set; }
+        public bool isTopStock { get; set; }
+        public List<Equity> Equities { get; set; }
     }
 }

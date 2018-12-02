@@ -10,10 +10,10 @@
     font-size: x-large;
 }
 
-.nav-bar > a {
-    text-decoration: none;
-    color: inherit;
-}
+    .nav-bar > a {
+        text-decoration: none;
+        color: inherit;
+    }
 
 td {
     padding: 10px;
@@ -22,4 +22,22 @@ td {
 table {
     border-spacing: 10px;
     border-collapse: separate;
+}
+
+quoteAlign {
+    margin-top: 2%;
+}
+
+.submit {
+    background-color: #006747; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #c6ac93
 }

@@ -1,0 +1,79 @@
+﻿<br />
+Stock Picking Strategy:
+<br />
+<br />
+Based on the <a href="https://www.aaii.com/journal/article/quantitative-strategies-for-selecting-stocks">Stock Picking Strategies</a> provided, we opted the Week52 Price Range Strategy to select the top 5 stocks from the quotes
+API of every stock. Price momentum defines the speed with which stock goes up or down over a period. This can be determined by the 52 week high and low values of the stock. We chose close price, week52Low, week52High to calculate the Price momentum of each stock symbol.
+<br />
+In the Companies API result set, we found some companies whose names field is empty, isEnabled value is Zero and company type value is N/A.
+We have handled such scenarios and removed companies which are not valid.
+<br />
+<br />
+Price Momentum = (Close - Week52Low) /(Week52High - Week52Low)
+<br />
+<br />
+From the above formula, there were some stocks whose Week52 high and low values are 0 which resulted in making
+Price momentum value as Infinity. We have removed these stocks as well to clean junk data.
+<br />
+There were many stocks whose Price Momentum value is more than 82%. Hence, we are displaying only the top 5 stocks among them.
+<br />
+There were stocks whose total volume is less or not upto the mark. Considering the current market trend, we have set
+an average volume of stock over 30 Million for some decent stocks which are genuinely top.
+<br />
+<br />
+<b>Self Reflection</b>
+<br />
+<br />
+Rahil:
+<br />
+<br />
+1) Read the details of the IEX Trading API and created Model called Quotes to read the API details.
+ Along with the details, a property named week52PriceRange was added to calculate the week 52 price range strategy.
+<br />
+2) Picked the 52-Week Price Range Strategy which calculates the Price momentum ratio to take the top 5 stocks whose score is 82% or higher.
+<br />
+3) Faced some issues in fetching quote results due to the IEX Trading API limitations of allowing only 100 symbols.
+<br />
+4) Fetched all the symbol's data and filtered those quotes whose difference between high value and low value is zero and saved them in database.
+<br />
+5) Created a Model named CompanyQuote for view model interaction.
+<br />
+6) Learnt the client server interaction in MVC model and implemented the application related changes in both server and client side.
+<br />
+7) Leart about MVC Application and Sql server accessing.
+<br />
+<br />
+Aayush:
+<br />
+<br />
+1) Handled UI part of designing web pages for top 5 stocks page which displays all the values of stocks.
+<br />
+2) Created a web page to display the quote values of the top 5 stocks.
+<br />
+3) Made sure that all the null exceptions are checked and handled in the server side.
+<br />
+4) Got a chance to explore Azure services
+<br />
+<br />
+<b>Strategy Implementation</b>
+<br />
+<br />
+<div>
+    1) We are refreshing the companies and quote values in database once every 30 days.
+    <br />
+    2) While saving the data, we are calculating the values of top stocks using 52 - week price strategy and saving the companies which
+    are the top stocks for that month.
+    <br />
+    3) The Index page shows a type ahead drop down to search all the companies and get their quotes.
+    <br />
+    4) A detail button is provided to get more informatio about the stock.
+    <br />
+    5) An option is provided to save the stock values into the database as prefered by user.
+    <br />
+    6) Saved Stocks page displays the stocks which are preferred by the user. User can also remove the stock if it is not prefer it.
+    <br />
+    7) Top Stocks page helps user in finding the top stocks for that month. User can add these stocks to his preference.
+    <br />
+</div>
+
+

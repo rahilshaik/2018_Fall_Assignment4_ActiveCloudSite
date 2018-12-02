@@ -1,31 +1,115 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@model List<IEXTrading.Models.ViewModel.CompanyQuote>
+
+@{
+    ViewData["Title"] = "Company";
 }
 
-<h2>IEX Trading Application</h2>
+<h2>Stocks</h2>
 <hr />
 
-<div>
-    <p>
-        This application let's you fetch trading data from IEX via their public <a href="https://iextrading.com/developer/">API</a>.
-        <br />
-        <br />
-        The <a asp-area="" asp-controller="Home" asp-action="Symbols">Symbols</a> tab fetches symbols data from the
-        <a href="https://iextrading.com/developer/docs/#reference-data">IEX Reference API </a> and displays the results.
-        This data can also be saved in the local database.
-        <br />
-        The <a asp-area="" asp-controller="Home" asp-action="Quote">Quote</a> tab let's you select a Company(symbol) and fetches a quote from
-        <a href="https://iextrading.com/developer/docs/#stocks">IEX Stock API</a>.
-        The quote can also be saved in the local database.
-        <br />
-        The <a asp-area="" asp-controller="Home" asp-action="Refresh">Refresh</a> tab let's you refresh the local database, that is, remove all its contents.
-    </p>
-    <p>
-        Following learning objectives are fulfilled -
-        <ul>
-            <li>Connection to REST API.</li>
-            <li>Connection to database.</li>
-            <li>CRUD operations.</li>
-        </ul>
-    </p>
-</div>
+<form asp-controller="Home" asp-action="Index" method="get">
+    <select id="selectWithProjectDropDown" style="width:100%" class="js-example-basic-single" name="symbol">
+        @foreach (var companyQuote in Model)
+        {
+            <option value=@companyQuote.company.symbol selected>@companyQuote.company.name</option>
+        }
+    </select>
+    <input type="submit" id="btnAdd" class="submit" style="margin-top:2%" value="Get Quote" />
+</form>
+@if (Model.Where(a => a.primaryExchange != null).Count() == 1)
+{
+    var companyQuote = Model.Where(a => a.primaryExchange != null).FirstOrDefault();
+    <hr />
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    Quote
+                    <table>
+                        <tr>
+                            <td>
+                                Symbol
+                            </td>
+                            <td>@companyQuote.company.symbol</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Company Name
+                            </td>
+                            <td>@companyQuote.company.name</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Stock Exchange
+                            </td>
+                            <td>@companyQuote.primaryExchange</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Last Trading Price
+                            </td>
+                            <td>
+                                @companyQuote.latestPrice
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Week 52 High
+                            </td>
+                            <td>
+                                @companyQuote.week52High
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Week 52 Low
+                            </td>
+                            <td>
+                                @companyQuote.week52Low
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Closing Price
+                            </td>
+                            <td>
+                                @companyQuote.close
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Market Capitalization
+                            </td>
+                            <td>
+                                @companyQuote.marketCap
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Average Volume
+                            </td>
+                            <td>
+                                @companyQuote.avgTotalVolume
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <a asp-controller="Home" asp-action="Details" asp-route-symbol="@companyQuote.company.symbol">
+            <input type="submit" id="btnAdd" class="submit" value="Details" />
+        </a>
+        <a asp-controller="Home" asp-action="Index" asp-route-symbol="@String.Concat("save_",companyQuote.company.symbol)"><input type="submit" id="btnAdd" class="submit" style="margin-left:2%" value="Submit" /></a>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        $('#selectWithProjectDropDown').select2({
+            //width: '50%',
+            placeholder: "Select a project"
+        });
+    });
+    alertDbSave(@ViewBag.dbSuccessStock);
+</script>

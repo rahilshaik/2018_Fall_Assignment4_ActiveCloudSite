@@ -1,79 +1,95 @@
-﻿@model IEnumerable<IEXTrading.Models.Quote>
+﻿@model List<Tuple<IEXTrading.Models.Company, IEXTrading.Models.Quote>>
 
 <h2>Quote Details</h2>
 <hr />
 <hr />
 
 @*<form asp-controller="Home" asp-action="Quote" method="get">
-    <select name="symbol">
-        @foreach (var quote in Model)
-        {
-        <option value=@quote.symbol selected>@quote.companyName</option>
-        }
-    </select>
-    <input id="getQuote" type="submit" value="Get Quote" />
-</form>*@
+        <select name="symbol">
+            @foreach (var quote in Model)
+            {
+            <option value=@quote.symbol selected>@quote.companyName</option>
+            }
+        </select>
+        <input id="getQuote" type="submit" value="Get Quote" />
+    </form>*@
+@if (Model.Count() != 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Company Name
+                </th>
+                <th>
+                    Stock Exchange
+                </th>
+                <th>
+                    Last Trading Price
+                </th>
+                <th>
+                    Week 52 high
+                </th>
+                <th>
+                    Week 52 Low
+                </th>
+                <th>
+                    Closing Price
+                </th>
+                <th>
+                    Market Capitalization
+                </th>
+                <th>
+                    Average Volume
+                </th>
+            </tr>
+        </thead>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                Company Name
-            </th>
-            <th>
-                Stock Exchange
-            </th>
-            <th>
-                Last Trading Price
-            </th>
-            <th>
-                Week 52 high
-            </th>
-            <th>
-                Week 52 Low
-            </th>
-            <th>
-                Closing Price
-            </th>
-            <th>
-                Market Capitalization
-            </th>
-            <th>
-                Average Volume
-            </th>
-        </tr>
-    </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item2.companyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item2.primaryExchange)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item2.latestPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item2.week52High)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item2.week52Low)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item2.close)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item2.marketCap)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Item2.avgTotalVolume)
+                    </td>
+                    <td>
+                        @*<form asp-controller="Home" asp-action="Quotes" method="get"></form>
+                            <input id="addBtn" type="submit" style="margin-top:2%" value="Add" />*@
+                        @if (!item.Item1.IsPreferedByUser)
+                        {
+                            <a asp-controller="Home" asp-action="Quotes" asp-route-symbol="@String.Concat("save_", item.Item1.symbol)">
+                                <input type="submit" id="btnAdd" class="submit" style="margin-left:2%" value="ADD" />
+                            </a>
+                        }
+                    </td>
+                </tr>
 
-    <tbody>
-
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.companyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.primaryExchange)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.latestPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.week52High)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.week52Low)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.close)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.marketCap)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.avgTotalVolume)
-            </td>
-        </tr>
-        }      
-    </tbody>
-</table>
+            }
+        </tbody>
+    </table>
+}
+<script>
+    checkForStocks("@Model.Count()");
+    alertDbSave(@ViewBag.dbSuccessDelete);
+</script>

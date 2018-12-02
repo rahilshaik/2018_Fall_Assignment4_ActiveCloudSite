@@ -1,0 +1,79 @@
+﻿@model IEnumerable<IEXTrading.Models.Quote>
+
+<h2>Saved Stocks</h2>
+<hr />
+@if (Model.Count() != 0)
+{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Company Name
+            </th>
+            <th>
+                Stock Exchange
+            </th>
+            <th>
+                Last Trading Price
+            </th>
+            <th>
+                Week 52 high
+            </th>
+            <th>
+                Week 52 Low
+            </th>
+            <th>
+                Closing Price
+            </th>
+            <th>
+                Market Capitalization
+            </th>
+            <th>
+                Average Volume
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.companyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.primaryExchange)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.latestPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.week52High)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.week52Low)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.close)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.marketCap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.avgTotalVolume)
+                </td>
+                <td>
+                    <a asp-controller="Home" asp-action="SavedStocks" asp-route-symbol="@String.Concat("del_",item.symbol)">
+                        <input type="submit" id="btnAdd" class="submit" style="margin-left:2%" value="Remove Stock" />
+                    </a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+}
+<script>
+    @*checkForStocks("@Model.Count()");*@    
+    alertDbSave(@ViewBag.dbSuccessQuote);
+</script>

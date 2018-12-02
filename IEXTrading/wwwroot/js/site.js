@@ -69,4 +69,19 @@ function alertDbSave(success) {
     if (success === 1) {
         alert("Data saved successfully");
     }
+    else if (success === "success") {
+        window.location.href = 'Quotes.cshtml';
+    }
+    else if (success === "SuccessStock")
+        window.location.href = 'Index.cshtml';
+}
+
+function checkForStocks(stocksCount) {
+    if (stocksCount === "0") {
+        alert("No Stocks are Saved");
+    }
+}
+
+function DisableAddForSavedOnes() {
+
 }

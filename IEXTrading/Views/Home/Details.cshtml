@@ -1,0 +1,167 @@
+﻿@model Tuple<IEXTrading.Models.Company, IEXTrading.Models.Quote>
+
+<h2>Quote Details</h2>
+<hr />
+<hr />
+
+@if (Model != null)
+{
+    <div>
+        <a asp-controller="Home" asp-action="Index" asp-route-symbol="@Model.Item1.symbol">
+            <input type="submit" id="btnAdd" class="submit" value="Back" />
+        </a>
+        <a asp-controller="Home" asp-action="Index" asp-route-symbol="@String.Concat("save_",Model.Item1.symbol)"><input type="submit" id="btnAdd" class="submit" style="margin-left:2%" value="Save" /></a>
+    </div>
+    <table>
+        <tbody>
+            <tr>
+                <table>
+                    <tr>
+                        <td>
+                            Symbol
+                        </td>
+                        <td>@Model.Item1.symbol</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Company Name
+                        </td>
+                        <td>@Model.Item1.name</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Stock Exchange
+                        </td>
+                        <td>@Model.Item2.primaryExchange</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Stock Exchange
+                        </td>
+                        <td>@Model.Item2.sector</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Last Trading Price
+                        </td>
+                        <td>
+                            @Model.Item2.latestPrice
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Week 52 High
+                        </td>
+                        <td>
+                            @Model.Item2.week52High
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Week 52 Low
+                        </td>
+                        <td>
+                            @Model.Item2.week52Low
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            High Price
+                        </td>
+                        <td>
+                            @Model.Item2.high
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Low Price
+                        </td>
+                        <td>
+                            @Model.Item2.low
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Latest Price
+                        </td>
+                        <td>
+                            @Model.Item2.latestPrice
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Opening Price
+                        </td>
+                        <td>
+                            @Model.Item2.open
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Closing Price
+                        </td>
+                        <td>
+                            @Model.Item2.close
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Market Capitalization
+                        </td>
+                        <td>
+                            @Model.Item2.marketCap
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Previous Close
+                        </td>
+                        <td>
+                            @Model.Item2.previousClose
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Average Volume
+                        </td>
+                        <td>
+                            @Model.Item2.avgTotalVolume
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Latest Volume
+                        </td>
+                        <td>
+                            @Model.Item2.latestVolume
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Change
+                        </td>
+                        <td>
+                            @Model.Item2.change
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Change Percent
+                        </td>
+                        <td>
+                            @Model.Item2.changePercent
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Calculation Price
+                        </td>
+                        <td>
+                            @Model.Item2.calculationPrice
+                        </td>
+                    </tr>
+                </table>
+            </tr>
+        </tbody>
+    </table>
+}
