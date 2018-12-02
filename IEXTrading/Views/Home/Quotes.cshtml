@@ -79,7 +79,7 @@
                         @if (!item.Item1.IsPreferedByUser)
                         {
                             <a asp-controller="Home" asp-action="Quotes" asp-route-symbol="@String.Concat("save_", item.Item1.symbol)">
-                                <input type="submit" id="btnAdd" class="submit" style="margin-left:2%" value="ADD" />
+                                <input type="submit" id="btnAdd" class="submit" style="margin-left:2%" value="Add to Preference" />
                             </a>
                         }
                     </td>
