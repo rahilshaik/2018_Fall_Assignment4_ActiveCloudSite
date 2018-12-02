@@ -8,7 +8,7 @@
 <hr />
 
 <form asp-controller="Home" asp-action="Index" method="get">
-    <select id="selectWithProjectDropDown" style="width:100%" class="js-example-basic-single" name="symbol">
+    <select id="selectWithStock" style="width:100%" class="js-example-basic-single" name="symbol">
         @foreach (var companyQuote in Model)
         {
             <option value=@companyQuote.company.symbol selected>@companyQuote.company.name</option>
@@ -101,15 +101,9 @@
         <a asp-controller="Home" asp-action="Details" asp-route-symbol="@companyQuote.company.symbol">
             <input type="submit" id="btnAdd" class="submit" value="Details" />
         </a>
-        <a asp-controller="Home" asp-action="Index" asp-route-symbol="@String.Concat("save_",companyQuote.company.symbol)"><input type="submit" id="btnAdd" class="submit" style="margin-left:2%" value="Submit" /></a>
+        <a asp-controller="Home" asp-action="Index" asp-route-symbol="@String.Concat("save_",companyQuote.company.symbol)"><input type="submit" id="btnAdd" class="submit" style="margin-left:2%" value="Save" /></a>
     </div>
 }
 <script>
-    $(document).ready(function () {
-        $('#selectWithProjectDropDown').select2({
-            //width: '50%',
-            placeholder: "Select a project"
-        });
-    });
     alertDbSave(@ViewBag.dbSuccessStock);
 </script>
