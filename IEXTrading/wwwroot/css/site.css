@@ -17,6 +17,8 @@
 
 td {
     padding: 10px;
+    border-style: groove;
+    border-color: seagreen;
 }
 
 table {
